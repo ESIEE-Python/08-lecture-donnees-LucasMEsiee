@@ -1,6 +1,8 @@
+"""
+Programme pour parcourir un fichier
+"""
 #### Imports et définition des variables globales
-import random
-
+import csv
 FILENAME = "listes.csv"
 
 #### Fonctions secondaires
@@ -14,39 +16,66 @@ def read_data(filename):
     Returns:
         list: le contenu du fichier (1 list par ligne)
     """
-    l = []
+    with open(filename, 'r', encoding='UTF8') as file:
+        file_read = csv.reader(file , delimiter=';')
+        l = [list(map(int, row)) for row in file_read]
     return l
 
 def get_list_k(data, k):
-    l = []
-    return l
+    """ retourne la liste à l'indice k
+    Args:
+        data
+        k : l'indice voulu
+    Returns:
+        list: list de l'indice k
+    """
+    return data[k]
 
 def get_first(l):
-    return None
+    """
+    Retourne le premier élément de la liste
+    """
+    return l[0]
 
 def get_last(l):
-    return None
+    """
+    Retourne le dernier élément de la liste
+    """
+    return l[-1]
 
 def get_max(l):
-    return None
+    """
+    Retourne l'élément maximum de la liste
+    """
+    return max(l)
 
 def get_min(l):
-    return None
+    """
+    Retourne le minimum de la liste
+    """
+    return min(l)
 
 def get_sum(l):
-    return None
+    """
+    Retourne la somme de la liste
+    """
+    return sum(l)
 
 
 #### Fonction principale
 
 
 def main():
-    pass
-    # data = read_data(FILENAME)
-    # for i, l in enumerate(data):
-    #     print(i, l)
-    # k = 37
-    # print(k, get_list_k(data, 37))
+    """
+    Fonction main pour tester les méthodes secondaires
+    """
+    data = read_data(FILENAME)
+    print(99, get_list_k(data, 99))
+    print('First : ',get_first(data[99]))
+    print('Last : ',get_last(data[99]))
+    print('Max : ',get_max(data[99]))
+    print('Min : ',get_min(data[99]))
+    print('Sum : ',get_sum(data[99]))
 
 
 if __name__ == "__main__":
